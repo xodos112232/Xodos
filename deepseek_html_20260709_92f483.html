@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة التحكم - Last Hope</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background: #0A0A0A; color: #fff; font-family: 'Inter', sans-serif; padding: 40px; }
+        .container { max-width: 800px; margin: auto; background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; border: 1px solid #00E5FF; }
+        .role-tag { background: #1A1A1A; padding: 8px 16px; border-radius: 30px; margin: 5px; display: inline-block; border-left: 4px solid #FF2A75; }
+        .admin-role { border-left-color: gold; color: gold; }
+        .user-card { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
+        .user-card img { width: 60px; border-radius: 50%; border: 2px solid #00E5FF; }
+        .btn { background: #FF2A75; padding: 10px 20px; border-radius: 30px; color: #fff; text-decoration: none; display: inline-block; margin-top: 10px; }
+        .btn:hover { background: #00E5FF; color: #000; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="user-card">
+            <img src="https://cdn.discordapp.com/avatars/{{ user.user_id }}/{{ user.avatar }}.png" alt="Avatar">
+            <div>
+                <h1 style="color: #FF2A75;">مرحباً {{ user.username }}</h1>
+                <p><i class="fab fa-discord"></i> معرفك: {{ user.discord_tag }}</p>
+            </div>
+        </div>
+        
+        <h3 style="color: #00E5FF;">رتبك المتزامنة من ديسكورد:</h3>
+        <div style="margin: 20px 0;">
+            {% if roles %}
+                {% for role in roles %}
+                    <span class="role-tag"><i class="fas fa-shield-alt"></i> رتبة رقم: {{ role[:8] }}...</span>
+                {% endfor %}
+            {% else %}
+                <p style="color: #aaa;">⚠️ لم يتم العثور على رتب. تأكد من وجودك في سيرفر الديسكورد وأن البوت يعمل.</p>
+            {% endif %}
+        </div>
+        <p style="color: #888; font-size:0.9rem;">* يتم تحديث الرتب تلقائياً عند كل تسجيل دخول.</p>
+        
+        <div style="margin-top: 30px; border-top: 1px solid #333; padding-top: 20px;">
+            <a href="/apply" class="btn"><i class="fas fa-pen-fancy"></i> تقديم Whitelist</a>
+            <a href="/logout" style="color: #FF2A75; margin-left: 20px;"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+        </div>
+    </div>
+</body>
+</html>
